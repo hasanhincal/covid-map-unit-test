@@ -25,6 +25,10 @@ This React-based application provides real-time tracking of COVID-19 cases globa
 - jest
 - thunk
 
+## Live Project
+
+https://covid-map-unit-test.vercel.app/
+
 ## Project GIF
 
 <img src="screen1.gif">
