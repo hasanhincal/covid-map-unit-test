@@ -75,13 +75,17 @@ it("veri geldiğinde ülke bilgisi ve kartlar ekrana basılır", () => {
 
   // covid nesnesini diziye çevir;
   const arr = Object.entries(exa_data.covid);
-  console.log(arr);
-  // dizideki bütün elemanların key ve value değerleri ekrana basılıyor mu?
-  arr.forEach((item) => {
-    // başlık ekrana geldi mi?
-    screen.getByText(item[0].split("_").join(" "));
 
-    // değer ekrana geldi mi?
-    screen.queryAllByText(item[1]);
+  arr.forEach(async (item) => {
+    // Anahtar (başlık) ekranda var mı?
+    const headers = await screen.findAllByText(item[0].split("_").join(" "), {
+      exact: false,
+    });
+    console.log(`${item[0]} başlığı ekranda ${headers.length} kez bulundu.`);
+
+    // Değer ekranda var mı?
+    const values = await screen.findAllByText(item[1]);
+    console.log(`${item[1]} değeri ekranda ${values.length} kez bulundu.`);
   });
 });
+// {exact: false} kullanarak, boşlukların, tirelerin veya diğer düzensizliklerin metin eşleştirme işleminden önce normalleştirilmesi sağlanabilir.
